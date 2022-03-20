@@ -1,0 +1,7 @@
+{
+    "host": "contentmanager.cpwzz35sykfk.us-east-1.rds.amazonaws.com",
+    "user": "admin",
+    "password": "testpass",
+    "database": "contentmanager",
+    "s3Bucket": "files-eshwar"
+  }

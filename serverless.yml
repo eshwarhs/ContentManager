@@ -1,0 +1,58 @@
+service: ContentManager
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+
+  iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "rds:*"
+          - "s3:*"
+        Resource: "*"
+
+plugins:
+  - serverless-plugin-common-excludes
+  - serverless-plugin-include-dependencies
+
+functions:
+  PostContent:
+    handler: post.postContent
+    name: PostContent
+    memorySize: 256
+    events:
+      - http:
+            path: /post-content
+            method: post
+            cors: true
+  PatchContent:
+    handler: patch.patchContent
+    name: PatchContent
+    memorySize: 256
+    events:
+      - http:
+            path: /patch-content
+            method: patch
+            cors: true
+  DeleteContent:
+    handler: delete.deleteContent
+    name: DeleteContent
+    memorySize: 256
+    events:
+      - http:
+            path: /delete-content
+            method: delete
+            cors: true
+  GetContent:
+    handler: get.getContent
+    name: GetContent
+    memorySize: 256
+    events:
+      - http:
+            path: /get-content
+            method: get
+            cors: true
